@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEURAL_ARCHIVE_3047 | Medical Division</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 50%, transparent 20%, rgba(255, 0, 0, 0.02) 21%, rgba(255, 0, 0, 0.02) 34%, transparent 35%, transparent),
+                linear-gradient(0deg, transparent 24%, rgba(255, 0, 0, 0.05) 25%, rgba(255, 0, 0, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 0, 0, 0.05) 75%, rgba(255, 0, 0, 0.05) 76%, transparent 77%, transparent);
+            background-size: 200px 200px, 50px 50px;
+            animation: gridShift 10s linear infinite;
+        }
+
+        @keyframes gridShift {
+            0% { background-position: 0 0, 0 0; }
+            100% { background-position: 200px 200px, 50px 50px; }
+        }
+
+        /* Blinking terminal elements */
+        .terminal-blink {
+            animation: blink 1.5s infinite;
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Glitch effect */
+        .glitch {
+            position: relative;
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 98% { transform: translate(0); }
+            99% { transform: translate(-2px, 1px); }
+            100% { transform: translate(2px, -1px); }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+            border-bottom: 2px solid #ff0000;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(255, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff0000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header-data {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .data-point {
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        .data-value {
+            display: block;
+            font-size: 1.2rem;
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        /* Navigation */
+        nav {
+            background: #f5f5f5;
+            border-bottom: 1px solid #ff0000;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            padding: 15px 20px;
+            cursor: pointer;
+            border-right: 1px solid #ddd;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: #ff0000;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            flex: 0 0 250px;
+            background: #fafafa;
+            border: 1px solid #ff0000;
+            border-radius: 5px;
+            padding: 20px;
+            height: fit-content;
+            box-shadow: 0 2px 5px rgba(255, 0, 0, 0.1);
+        }
+
+        .sidebar h3 {
+            color: #ff0000;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #ff0000;
+            padding-bottom: 5px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin: 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px dotted #ccc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar li:hover {
+            color: #ff0000;
+            padding-left: 10px;
+        }
+
+        .sidebar li::before {
+            content: "[+] ";
+            color: #ff0000;
+        }
+
+        /* Main content */
+        .main-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: #f0f0f0;
+            border: 1px solid #ff0000;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            background: #f0f0f0;
+            border-right: 1px solid #ff0000;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .tab:hover, .tab.active {
+            background: #ff0000;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            border: 1px solid #ff0000;
+            border-top: none;
+            padding: 30px;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Content sections */
+        .content-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #fafafa;
+            border-left: 4px solid #ff0000;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .content-section h2 {
+            color: #ff0000;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .content-section h3 {
+            color: #666;
+            margin: 15px 0 10px 0;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+
+        /* Anatomical diagram */
+        .anatomical-diagram {
+            width: 100%;
+            height: 200px;
+            background: white;
+            border: 2px solid #ff0000;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .body-outline {
+            width: 80px;
+            height: 150px;
+            border: 2px solid #ff0000;
+            border-radius: 40px 40px 0 0;
+            position: relative;
+        }
+
+        .organ {
+            position: absolute;
+            background: #ff0000;
+            opacity: 0.3;
+            animation: pulse 2s infinite;
+        }
+
+        .heart {
+            width: 20px;
+            height: 15px;
+            left: 30px;
+            top: 40px;
+            border-radius: 50% 50% 0 50%;
+        }
+
+        .brain {
+            width: 30px;
+            height: 20px;
+            left: 25px;
+            top: 10px;
+            border-radius: 50%;
+        }
+
+        .lungs {
+            width: 15px;
+            height: 25px;
+            left: 10px;
+            top: 35px;
+            border-radius: 50% 0 0 50%;
+        }
+
+        .lungs.right {
+            left: 55px;
+            border-radius: 0 50% 50% 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Data charts */
+        .data-chart {
+            background: white;
+            border: 1px solid #ff0000;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: end;
+            gap: 10px;
+            height: 100px;
+            margin: 20px 0;
+        }
+
+        .bar {
+            background: linear-gradient(to top, #ff0000, #ff6666);
+            min-width: 30px;
+            border-radius: 3px 3px 0 0;
+            animation: grow 2s ease-out;
+            position: relative;
+        }
+
+        @keyframes grow {
+            from { height: 0; }
+        }
+
+        .bar::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: #ff0000;
+        }
+
+        /* Scrollable content */
+        .scroll-box {
+            max-height: 200px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #ff0000;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .scroll-box::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .scroll-box::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .scroll-box::-webkit-scrollbar-thumb {
+            background: #ff0000;
+            border-radius: 4px;
+        }
+
+        /* Image gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(45deg, #f0f0f0, #ffffff);
+            border: 2px solid #ff0000;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .gallery-item::before {
+            content: "SCAN_" attr(data-id);
+            color: #ff0000;
+            font-size: 0.7rem;
+            text-align: center;
+        }
+
+        /* Collapsible content */
+        .collapsible {
+            background: #f8f8f8;
+            border: 1px solid #ff0000;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .collapsible-header {
+            padding: 15px;
+            background: #ff0000;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .collapsible-header:hover {
+            background: #cc0000;
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .collapsible-content.open {
+            max-height: 500px;
+        }
+
+        .collapsible-inner {
+            padding: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            background: #ff0000;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 5px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .btn:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .btn.secondary {
+            background: transparent;
+            color: #ff0000;
+            border: 2px solid #ff0000;
+        }
+
+        .btn.secondary:hover {
+            background: #ff0000;
+            color: white;
+        }
+
+        /* Popup/Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            border: 3px solid #ff0000;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: modalSlide 0.3s ease;
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #ff0000;
+        }
+
+        /* Footer */
+        footer {
+            background: #f0f0f0;
+            border-top: 2px solid #ff0000;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h4 {
+            color: #ff0000;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #666;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #ff0000;
+        }
+
+        /* Animated text */
+        .animated-text {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #ff0000;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #ff0000; }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                flex: none;
+                order: 2;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+            }
+        }
+
+        /* Terminal output styling */
+        .terminal-output {
+            background: #000;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            border: 2px solid #ff0000;
+        }
+
+        .error-text {
+            color: #ff0000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo glitch">
+                NEURAL_ARCHIVE_<span class="terminal-blink">3047</span>
+            </div>
+            <div class="header-data">
+                <div class="data-point">
+                    <span class="data-value">127.3K</span>
+                    SPECIMENS
+                </div>
+                <div class="data-point">
+                    <span class="data-value terminal-blink">ACTIVE</span>
+                    STATUS
+                </div>
+                <div class="data-point">
+                    <span class="data-value">99.7%</span>
+                    INTEGRITY
+                </div>
+                <div class="data-point">
+                    <span class="data-value glitch">ERROR</span>
+                    CORRUPTION
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="nav-item active" onclick="switchTab('diagnostics')">DIAGNOSTICS</div>
+            <div class="nav-item" onclick="switchTab('specimens')">SPECIMENS</div>
+            <div class="nav-item" onclick="switchTab('research')">RESEARCH</div>
+            <div class="nav-item" onclick="switchTab('archives')">ARCHIVES</div>
+            <div class="nav-item terminal-blink" onclick="showModal()">EMERGENCY</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>System Status</h3>
+            <ul>
+                <li onclick="updateStatus('core')">Core Systems</li>
+                <li onclick="updateStatus('neural')">Neural Networks</li>
+                <li onclick="updateStatus('bio')">Bio-Scanners</li>
+                <li onclick="updateStatus('quantum')">Quantum Arrays</li>
+                <li onclick="updateStatus('backup')">Backup Protocols</li>
+            </ul>
+
+            <h3>Recent Alerts</h3>
+            <div class="scroll-box">
+                <p><span class="terminal-blink">[ERROR]</span> Neural pathway corruption detected in Sector 7</p>
+                <p><span class="terminal-blink">[WARN]</span> Unusual bio-readings from Subject 4472</p>
+                <p><span class="terminal-blink">[INFO]</span> Quantum stabilization complete</p>
+                <p><span class="terminal-blink">[ERROR]</span> Memory bank fragmentation at 23%</p>
+                <p><span class="terminal-blink">[CRITICAL]</span> Unknown entity detected in Archive Bay 12</p>
+                <p><span class="terminal-blink">[INFO]</span> Backup systems initialized</p>
+                <p><span class="terminal-blink">[WARN]</span> Temperature variance in Cryo Unit 8</p>
+            </div>
+
+            <h3>Quick Actions</h3>
+            <button class="btn" onclick="runDiagnostic()">RUN DIAGNOSTIC</button>
+            <button class="btn secondary" onclick="emergencyProtocol()">EMERGENCY LOCK</button>
+        </aside>
+
+        <aside class="sidebar">
+            <h3>Research Links</h3>
+            <ul>
+                <li onclick="loadResearch('genetics')">Genetic Modifications</li>
+                <li onclick="loadResearch('cybernetics')">Cybernetic Integration</li>
+                <li onclick="loadResearch('consciousness')">Consciousness Transfer</li>
+                <li onclick="loadResearch('immortality')">Immortality Protocols</li>
+                <li onclick="loadResearch('enhancement')">Human Enhancement</li>
+            </ul>
+
+            <h3>Archive Navigation</h3>
+            <ul>
+                <li onclick="navigateArchive('2990')">Pre-War Archives (2990)</li>
+                <li onclick="navigateArchive('3010')">War Era Records (3010)</li>
+                <li onclick="navigateArchive('3025')">Reconstruction Data (3025)</li>
+                <li onclick="navigateArchive('3040')">Current Operations (3040+)</li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('diagnostics')">SYSTEM DIAGNOSTICS</div>
+                <div class="tab" onclick="switchTab('specimens')">SPECIMEN DATA</div>
+                <div class="tab" onclick="switchTab('research')">RESEARCH LOGS</div>
+                <div class="tab" onclick="switchTab('archives')">NEURAL ARCHIVES</div>
+            </div>
+
+            <div id="diagnostics" class="tab-content active">
+                <div class="content-section">
+                    <h2>System Overview</h2>
+                    <div class="animated-text">Initializing neural pathway analysis...</div>
+                    
+                    <div class="anatomical-diagram">
+                        <div class="body-outline">
+                            <div class="organ brain"></div>
+                            <div class="organ heart"></div>
+                            <div class="organ lungs"></div>
+                            <div class="organ lungs right"></div>
+                        </div>
+                    </div>
+
+                    <h3>Performance Metrics</h3>
+                    <div class="data-chart">
+                        <p>Neural Activity Levels (Last 7 Cycles)</p>
+                        <div class="chart-bars">
+                            <div class="bar" style="height: 60%;" data-value="127.3K"></div>
+                            <div class="bar" style="height: 80%;" data-value="156.8K"></div>
+                            <div class="bar" style="height: 45%;" data-value="98.2K"></div>
+                            <div class="bar" style="height: 90%;" data-value="203.7K"></div>
+                            <div class="bar" style="height: 70%;" data-value="142.1K"></div>
+                            <div class="bar" style="height: 85%;" data-value="189.4K"></div>
+                            <div class="bar" style="height: 95%;" data-value="234.6K"></div>
+                        </div>
+                    </div>
+
+                    <div class="terminal-output">
+                        <span class="terminal-blink">></span> RUNNING SYSTEM DIAGNOSTICS...<br>
+                        <span class="terminal-blink">></span> Checking neural pathways... <span style="color: #00ff00;">OK</span><br>
+                        <span class="terminal-blink">></span> Verifying bio-scanner integrity... <span style="color: #00ff00;">OK</span><br>
+                        <span class="terminal-blink">></span> Testing quantum stabilizers... <span class="error-text">ERROR</span><br>
+                        <span class="terminal-blink">></span> Corruption detected in Archive Sector 7<br>
+                        <span class="terminal-blink">></span> Attempting repair protocols...
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Critical Systems</h2>
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            Neural Network Array
+                            <span>+</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="collapsible-inner">
+                                <p>Primary neural processing unit operating at 97.3% efficiency. Minor degradation detected in sectors 4, 7, and 12. Recommended action: Scheduled maintenance cycle within 48 hours.</p>
+                                <p><span class="terminal-blink">Status:</span> <span style="color: #ff9900;">CAUTION</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            Bio-Scanner Matrix
+                            <span>+</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="collapsible-inner">
+                                <p>All bio-scanning arrays operational. Quantum entanglement field stable. Recent anomaly in Subject 4472 requires further investigation.</p>
+                                <p><span class="terminal-blink">Status:</span> <span style="color: #00ff00;">OPERATIONAL</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible">
+                        <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                            Archive Integrity
+                            <span>+</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="collapsible-inner">
+                                <p>Critical corruption detected in Archive Bay 7. Data recovery in progress. Estimated completion: 72 hours. Backup systems engaged.</p>
+                                <p><span class="terminal-blink">Status:</span> <span class="error-text">CRITICAL</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="specimens" class="tab-content">
+                <div class="content-section">
+                    <h2>Active Specimens</h2>
+                    <p>Current specimen database contains 127,847 active entries. Recent additions show unusual neural patterns.</p>
+                    
+                    <div class="gallery">
+                        <div class="gallery-item" data-id="001" onclick="showSpecimen('001')"></div>
+                        <div class="gallery-item" data-id="002" onclick="showSpecimen('002')"></div>
+                        <div class="gallery-item" data-id="003" onclick="showSpecimen('003')"></div>
+                        <div class="gallery-item" data-id="004" onclick="showSpecimen('004')"></div>
+                        <div class="gallery-item" data-id="005" onclick="showSpecimen('005')"></div>
+                        <div class="gallery-item" data-id="006" onclick="showSpecimen('006')"></div>
+                        <div class="gallery-item" data-id="007" onclick="showSpecimen('007')"></div>
+                        <div class="gallery-item" data-id="008" onclick="showSpecimen('008')"></div>
+                    </div>
+
+                    <h3>Specimen Analysis Results</h3>
+                    <div class="scroll-box">
+                        <p><strong>Subject 4472:</strong> Anomalous neural activity. Consciousness transfer attempt failed. Subject remains in stasis.</p>
+                        <p><strong>Subject 4473:</strong> Successful genetic modification. Enhanced cognitive function by 340%. Monitoring required.</p>
+                        <p><strong>Subject 4474:</strong> Cybernetic integration complete. Neural pathways adapting to implants.</p>
+                        <p><strong>Subject 4475:</strong> Immortality protocol initiated. Cellular regeneration rate exceeding expectations.</p>
+                        <p><strong>Subject 4476:</strong> Memory extraction successful. Archive uploaded to Neural Bank 7.</p>
+                        <p><strong>Subject 4477:</strong> Enhancement procedure failed. Subject terminated. Archive specimen for study.</p>
+                        <p><strong>Subject 4478:</strong> Consciousness transfer successful. New host body adapting well.</p>
+                        <p><strong>Subject 4479:</strong> Genetic instability detected. Quarantine protocols engaged.</p>
+                    </div>
+
+                    <div class="terminal-output">
+                        <span class="terminal-blink">></span> ACCESSING SPECIMEN DATABASE...<br>
+                        <span class="terminal-blink">></span> Total Records: 127,847<br>
+                        <span class="terminal-blink">></span> Active Subjects: 23,194<br>
+                        <span class="terminal-blink">></span> Archived: 104,653<br>
+                        <span class="terminal-blink">></span> <span class="error-text">WARNING:</span> Anomalous readings in Sector 7
+                    </div>
+                </div>
+            </div>
+
+            <div id="research" class="tab-content">
+                <div class="content-section">
+                    <h2>Research Protocols</h2>
+                    <p>Current research initiatives focus on consciousness transfer, genetic enhancement, and neural integration technologies.</p>
+
+                    <h3>Active Research Projects</h3>
+                    
+                    <div class="data-chart">
+                        <p>Research Progress by Category</p>
+                        <div class="chart-bars">
+                            <div class="bar" style="height: 85%;" data-value="85%"></div>
+                            <div class="bar" style="height: 92%;" data-value="92%"></div>
+                            <div class="bar" style="height: 67%;" data-value="67%"></div>
+                            <div class="bar" style="height: 78%;" data-value="78%"></div>
+                            <div class="bar" style="height: 43%;" data-value="43%"></div>
+                        </div>
+                        <p style="font-size: 0.8rem; margin-top: 10px;">Genetics | Cybernetics | Consciousness | Enhancement | Immortality</p>
+                    </div>
+
+                    <button class="btn" onclick="generateReport()">GENERATE RESEARCH REPORT</button>
+                    <button class="btn secondary" onclick="showModal()">ACCESS CLASSIFIED</button>
+                </div>
+
+                <div class="content-section">
+                    <h2>Research Logs</h2>
+                    <div class="scroll-box" style="max-height: 300px;">
+                        <p><strong>[3047.127.1534]</strong> Consciousness transfer experiment #4472 - Subject rejection of neural pathways. Reverting to backup consciousness.</p>
+                        <p><strong>[3047.127.1521]</strong> Genetic modification protocol successful on Subject 4473. Enhanced cognitive function stable.</p>
+                        <p><strong>[3047.127.1508]</strong> Cybernetic integration showing promising results. Neural adaptation rate exceeding models.</p>
+                        <p><strong>[3047.127.1455]</strong> Immortality protocol Phase 3 initiated. Cellular regeneration accelerating beyond safe parameters.</p>
+                        <p><strong>[3047.127.1442]</strong> Memory extraction and archive complete. Neural patterns stored in Quantum Bank 7.</p>
+                        <p><strong>[3047.127.1429]</strong> Enhancement procedure complications. Subject vitals critical. Emergency protocols engaged.</p>
+                        <p><strong>[3047.127.1416]</strong> New consciousness successfully transferred to synthetic neural matrix. Monitoring for integration stability.</p>
+                        <p><strong>[3047.127.1403]</strong> Genetic instability cascade detected. Immediate quarantine of Research Wing Delta.</p>
+                        <p><strong>[3047.127.1350]</strong> Quantum entanglement field generator malfunction. Backup systems online.</p>
+                        <p><strong>[3047.127.1337]</strong> Neural pathway mapping complete for Subject batch 4470-4479. Anomalies noted in 60% of subjects.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="archives" class="tab-content">
+                <div class="content-section">
+                    <h2>Neural Archive System</h2>
+                    <p>Access to preserved consciousness data and historical neural patterns. Archive integrity currently at 87.3%.</p>
+
+                    <div class="anatomical-diagram">
+                        <div style="color: #ff0000; font-size: 2rem; text-align: center;">
+                            ⚠ ARCHIVE CORRUPTION DETECTED ⚠
+                        </div>
+                    </div>
+
+                    <h3>Archive Status</h3>
+                    <div class="terminal-output">
+                        <span class="terminal-blink">></span> NEURAL ARCHIVE STATUS REPORT<br>
+                        <span class="terminal-blink">></span> Total Archives: 2,847,392<br>
+                        <span class="terminal-blink">></span> Accessible: 2,486,274 (87.3%)<br>
+                        <span class="terminal-blink">></span> Corrupted: 361,118 (12.7%)<br>
+                        <span class="terminal-blink">></span> <span class="error-text">CRITICAL:</span> Archive Bay 7 experiencing cascade failure<br>
+                        <span class="terminal-blink">></span> Estimated data loss: 23,847 consciousness patterns<br>
+                        <span class="terminal-blink">></span> Recovery protocol: <span style="color: #ff9900;">IN PROGRESS</span>
+                    </div>
+
+                    <button class="btn" onclick="accessArchive()">ACCESS ARCHIVES</button>
+                    <button class="btn secondary" onclick="runRecovery()">RUN RECOVERY</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Neural Systems</h4>
+                <a href="#" onclick="showModal()">Consciousness Transfer</a>
+                <a href="#" onclick="showModal()">Memory Extraction</a>
+                <a href="#" onclick="showModal()">Neural Mapping</a>
+                <a href="#" onclick="showModal()">Archive Access</a>
+            </div>
+            <div class="footer-section">
+                <h4>Bio-Research</h4>
+                <a href="#" onclick="showModal()">Genetic Modification</a>
+                <a href="#" onclick="showModal()">Cybernetic Integration</a>
+                <a href="#" onclick="showModal()">Enhancement Protocols</a>
+                <a href="#" onclick="showModal()">Immortality Research</a>
+            </div>
+            <div class="footer-section">
+                <h4>System Status</h4>
+                <p>Archive Integrity: <span class="terminal-blink">87.3%</span></p>
+                <p>Neural Networks: <span style="color: #00ff00;">OPERATIONAL</span></p>
+                <p>Bio-Scanners: <span style="color: #00ff00;">ONLINE</span></p>
+                <p>Quantum Arrays: <span class="error-text">ERROR</span></p>
+            </div>
+            <div class="footer-section">
+                <h4>Emergency Protocols</h4>
+                <a href="#" onclick="emergencyProtocol()">Emergency Lockdown</a>
+                <a href="#" onclick="showModal()">Archive Recovery</a>
+                <a href="#" onclick="showModal()">System Restoration</a>
+                <a href="#" onclick="showModal()">Contact Command</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2 style="color: #ff0000;">CLASSIFIED ACCESS</h2>
+            <div class="terminal-output" style="margin: 20px 0;">
+                <span class="terminal-blink">></span> AUTHENTICATION REQUIRED<br>
+                <span class="terminal-blink">></span> Neural pattern recognition: <span class="error-text">FAILED</span><br>
+                <span class="terminal-blink">></span> Retinal scan: <span class="error-text">FAILED</span><br>
+                <span class="terminal-blink">></span> DNA verification: <span class="error-text">FAILED</span><br>
+                <span class="terminal-blink">></span> Access denied. Contact system administrator.
+            </div>
+            <button class="btn" onclick="closeModal()">ACKNOWLEDGE</button>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab, .nav-item').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to selected tab
+            event.target.classList.add('active');
+        }
+
+        // Collapsible functionality
+        function toggleCollapsible(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('span');
+            
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                icon.textContent = '+';
+            } else {
+                content.classList.add('open');
+                icon.textContent = '-';
+            }
+        }
+
+        // Modal functionality
+        function showModal() {
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Interactive functions
+        function updateStatus(system) {
+            alert(`Updating ${system} status... Please stand by.`);
+        }
+
+        function runDiagnostic() {
+            alert('Running full system diagnostic... This may take several minutes.');
+        }
+
+        function emergencyProtocol() {
+            if (confirm('WARNING: This will initiate emergency lockdown procedures. Continue?')) {
+                alert('EMERGENCY LOCKDOWN INITIATED. All systems secured.');
+            }
+        }
+
+        function loadResearch(topic) {
+            alert(`Loading research data for: ${topic.toUpperCase()}`);
+        }
+
+        function navigateArchive(year) {
+            alert(`Accessing archives from year ${year}... Checking data integrity.`);
+        }
+
+        function showSpecimen(id) {
+            alert(`Loading specimen data for SCAN_${id}... Neural patterns detected.`);
+        }
+
+        function generateReport() {
+            alert('Generating comprehensive research report... Estimated completion: 3 minutes.');
+        }
+
+        function accessArchive() {
+            alert('Accessing neural archives... Consciousness patterns loading.');
+        }
+
+        function runRecovery() {
+            alert('Initiating data recovery protocol... This process cannot be interrupted.');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Random data updates
+        setInterval(() => {
+            const dataValues = document.querySelectorAll('.data-value');
+            dataValues.forEach(element => {
+                if (element.textContent.includes('K')) {
+                    const currentValue = parseFloat(element.textContent);
+                    const newValue = (currentValue + (Math.random() - 0.5) * 2).toFixed(1);
+                    element.textContent = newValue + 'K';
+                }
+            });
+        }, 5000);
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('NEURAL_ARCHIVE_3047 initialized...');
+            console.log('System status: OPERATIONAL');
+            console.log('WARNING: Corruption detected in Archive Sector 7');
+        });
+    </script>
+</body>
+</html>
